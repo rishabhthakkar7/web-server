@@ -52,22 +52,21 @@ app.get('/weather',(req,res)=>{
                 address: address
             })
         }else{
-            forecast.forecast(latitude, longitutde,(error,data1)=>{
+            forecast.forecast(latitude, longitutde,(error,{temp,wind_speed})=>{
+                  
                 if(error){
-                    console.log('Error',error)
                     res.send({
                         location:address,
                         error,
                         address: address
                     })
                 }else{
-                    console.log(location + ' Temprture is '+data1)  
-                    res.send({
+                     res.send({
+                        wind_speed,
                         location:address,
-                        forecast:location + ' Temprture is '+data1,
+                        forecast:location + ' Temprture is '+temp,
                         address: address
                     })
-                     
                 }
             
             })

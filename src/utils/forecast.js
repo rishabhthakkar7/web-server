@@ -8,7 +8,10 @@ const forecast = (latitude,longitude,callback) =>{
         }else if(body.error){
             callback(body.error.info,undefined)
         }else{
-            callback(undefined, body.current.temperature)
+            console.log(body);
+            const temp = body.current.temperature
+            const wind_speed = body.current.wind_speed
+            callback(undefined,{temp,wind_speed})
         }
     })
 }
